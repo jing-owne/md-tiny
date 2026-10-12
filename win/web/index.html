@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- MDTN-A1 1.0 12823B20 5D7L6xvMO8ioYE9J9Yihe23gC8UKCKbDU7knbnq40weM8Q2oyegnVyYC59LUqQoWCPZgSF4Sv31moMH-r-hLCQ -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light dark">
+<title>md-tiny</title>
+<link rel="stylesheet" href="lib/github-markdown.css">
+<link rel="stylesheet" href="lib/prism.css">
+<link rel="stylesheet" href="editor.css">
+<link rel="stylesheet" href="settings.css">
+<script src="sig.js"></script>
+<script src="settings.js"></script>
+<script src="i18n.js"></script>
+<script src="theme.js"></script>
+</head>
+<body>
+
+<header id="toolbar">
+  <div class="app-title" data-i18n="app.name">md-tiny</div>
+  <div class="actions">
+    <button id="btn-open" data-i18n="btn.open" data-i18n-title="btn.open.tip">打开文件</button>
+    <button id="btn-open-folder" data-i18n="btn.openFolder" data-i18n-title="btn.openFolder.tip">打开文件夹</button>
+    <button id="btn-toggle" data-i18n="btn.edit" data-i18n-title="btn.toggle.tip" disabled>编辑</button>
+    <button id="btn-source" data-i18n="btn.source" data-i18n-title="btn.source.tip" style="display:none">源码</button>
+    <button id="btn-save" data-i18n="btn.save" data-i18n-title="btn.save.tip" disabled>保存</button>
+    <button id="btn-sidebar" class="icon-only" data-i18n-title="btn.sidebar.tip" title="显示或隐藏侧栏">☰</button>
+    <button id="btn-theme" class="icon-only" data-i18n-title="btn.theme.tip" title="切换主题">◐</button>
+    <button id="btn-lang" class="icon-only" data-i18n-title="btn.lang.tip" title="切换界面语言">中</button>
+    <button id="btn-settings" class="icon-only" data-i18n-title="btn.settings.tip" title="打开设置面板">⚙</button>
+  </div>
+  <div id="status" class="status">未打开文件</div>
+</header>
+
+<div id="tabbar"></div>
+
+<main id="main">
+  <aside id="sidebar">
+    <div class="side-tabs">
+      <button class="side-tab active" id="side-tab-files" data-i18n="tab.files">文件</button>
+      <button class="side-tab" id="side-tab-outline" data-i18n="tab.outline">大纲</button>
+    </div>
+    <div class="side-pane active" id="pane-files">
+      <input id="search-input" type="search" data-i18n-placeholder="search.placeholder" placeholder="搜索当前文件夹内容…">
+      <div id="file-tree">
+        <div class="tree-hint" data-i18n="tree.hint">打开文件夹后，此处列出目录内所有 .md 文档</div>
+      </div>
+    </div>
+    <div class="side-pane" id="pane-outline">
+      <div id="toc">
+        <div class="tree-hint" data-i18n="outline.hint">打开文档后，此处列出全部标题，点击可跳转</div>
+      </div>
+    </div>
+  </aside>
+
+  <div id="content">
+    <div id="empty-state">
+      <div class="empty-title" data-i18n="empty.title">md-tiny</div>
+      <div class="empty-sub" data-i18n="empty.sub">「打开文件」选择单个 .md，或「打开文件夹」浏览整个目录</div>
+      <div class="empty-hint" data-i18n="empty.hint">支持：标题 / 列表 / 表格 / 任务列表 / 代码高亮 / 数学公式 / 引用 / 链接 / 图片 · 多标签 / 全文搜索 / 大纲 / HTML 消毒</div>
+    </div>
+    <textarea id="editor" spellcheck="false" data-i18n-placeholder="editor.placeholder" placeholder="在此输入 Markdown 源码…"></textarea>
+    <div id="preview" class="markdown-body"></div>
+  </div>
+</main>
+
+<input type="file" id="file-input" accept=".md,.markdown,.mdown,.txt" hidden>
+
+<div id="lightbox" role="dialog" aria-modal="true">
+  <img alt="">
+  <div class="lb-hint" data-i18n="lightbox.close">关闭（Esc）</div>
+</div>
+
+<!-- 设置面板：扩展端「⚙」会直接打开选项页，这里的弹层供本地服务版与单页使用 -->
+<div id="settings-modal" role="dialog" aria-modal="true">
+  <div class="set-panel">
+    <header class="set-panel-head">
+      <span class="set-title" data-i18n="set.title">设置</span>
+      <button id="settings-close" class="set-close" type="button" data-i18n-aria="set.close" aria-label="关闭设置">×</button>
+    </header>
+    <div id="settings-root"></div>
+  </div>
+</div>
+
+<script src="lib/marked.min.js"></script>
+<script src="lib/purify.min.js"></script>
+<script src="lib/prism.js"></script>
+<script src="editor.js"></script>
+<script src="richedit.js"></script>
+<script src="ui.js"></script>
+<script src="settings-ui.js"></script>
+<!-- 本地服务模式桥接：无 ?token= 时自动退出，不影响原有行为 -->
+<script src="server-bridge.js"></script>
+</body>
+</html>

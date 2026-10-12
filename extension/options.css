@@ -1,0 +1,33 @@
+/* MDTN-A1 1.0 12823B20 s6M1CJxn0b-EhUAduFG_snXga7fxtjFz7UloM8eDWb9Mh1K-4A_IK8B851AhQayRZJrycTMs1_hK1EPBi2GHCA */
+/* ============================================================================
+ * 选项页专属样式（编辑器内弹层不使用本文件）
+ * ----------------------------------------------------------------------------
+ * 面板本体在 settings.css；这里只负责选项页自己的页头与容器尺寸。
+ * 布局沿用 editor.css 的 body flex 列布局，因此这里不重复声明。
+ * ========================================================================== */
+
+.opt-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-shrink: 0;
+  height: var(--md-toolbar-h);
+  padding: 0 16px;
+  background: var(--md-surface);
+  border-bottom: 1px solid var(--md-border);
+}
+
+.opt-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.opt-sub {
+  font-size: 12px;
+  color: var(--md-fg-subtle);
+}
+
+.opt-main {
+  flex: 1;
+  min-height: 0;
+}

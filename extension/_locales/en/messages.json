@@ -1,0 +1,22 @@
+{
+  "extName": {
+    "message": "md-tiny",
+    "description": "Extension name shown in the browser"
+  },
+  "extDesc": {
+    "message": "Open, preview, edit and save Markdown files. Dark theme, outline, copy buttons and math support. Fully offline, collects nothing.",
+    "description": "Extension description"
+  },
+  "actionTitle": {
+    "message": "Open md-tiny (Ctrl+Shift+M)",
+    "description": "Toolbar button tooltip"
+  },
+  "cmdTheme": {
+    "message": "Switch theme (light / dark / follow system)",
+    "description": "Keyboard command description"
+  },
+  "cmdSidebar": {
+    "message": "Show or hide the sidebar",
+    "description": "Keyboard command description"
+  }
+}

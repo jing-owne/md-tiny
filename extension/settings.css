@@ -1,0 +1,319 @@
+/* MDTN-A1 1.0 12823B20 iChg62ObM_Z7lTkk1zbw5N5LWfT9MBD5bJVw8V24vfm5m9gttPVqAa-1xtHoUpXrNECUSP_SR9MGU8dIQBItDg */
+/* ============================================================================
+ * md-tiny · 设置面板样式（扩展选项页与编辑器内弹层共用）
+ * ----------------------------------------------------------------------------
+ * 依赖 editor.css 里的 --md-* 变量，因此本文件必须在其之后加载。
+ * 颜色全部走变量，主题切换无需第二套规则。
+ * ========================================================================== */
+
+/* ---------------------------------------------------------------- 面板外壳 */
+
+.set-shell {
+  display: grid;
+  grid-template-columns: 158px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
+}
+
+.set-nav {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 8px;
+  border-right: 1px solid var(--md-border);
+  overflow: auto;
+}
+
+.set-nav-item {
+  text-align: left;
+  padding: 7px 10px;
+  font-size: 13px;
+  border: none;
+  background: transparent;
+  color: var(--md-fg-muted);
+  border-radius: var(--md-radius);
+  cursor: pointer;
+}
+
+.set-nav-item:hover { background: var(--md-surface-2); color: var(--md-fg); }
+.set-nav-item.active {
+  background: var(--md-accent-soft);
+  color: var(--md-accent);
+  font-weight: 600;
+}
+
+.set-body {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 16px 20px 20px;
+  min-height: 0;
+  overflow: auto;
+}
+
+.set-sec { display: none; flex-direction: column; gap: 20px; }
+.set-sec.active { display: flex; }
+
+.set-foot {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  padding: 9px 16px;
+  border-top: 1px solid var(--md-border);
+  font-size: 11.5px;
+  color: var(--md-fg-subtle);
+}
+
+.set-note.ok { color: #0f7b3f; }
+.set-note.warn { color: var(--md-danger); }
+
+:root[data-theme="dark"] .set-note.ok { color: #5dcaa5; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .set-note.ok { color: #5dcaa5; }
+}
+
+/* ---------------------------------------------------------------- 通用行 */
+
+.set-row,
+.set-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.set-text { min-width: 0; }
+
+.set-label {
+  font-size: 13px;
+  color: var(--md-fg);
+}
+
+.set-hint {
+  font-size: 11.5px;
+  color: var(--md-fg-subtle);
+  margin-top: 3px;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------------- 开关 */
+
+.set-switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 36px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid var(--md-border-strong);
+  border-radius: 10px;
+  background: var(--md-surface-2);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.set-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--md-surface);
+  border: 1px solid var(--md-border-strong);
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.set-switch.on {
+  background: var(--md-accent);
+  border-color: var(--md-accent);
+}
+
+.set-switch.on::after {
+  transform: translateX(16px);
+  background: #ffffff;
+  border-color: transparent;
+}
+
+/* ---------------------------------------------------------------- 分段控件 */
+
+.set-seg {
+  display: inline-flex;
+  flex-shrink: 0;
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius);
+  overflow: hidden;
+}
+
+.set-seg-item {
+  padding: 4px 11px;
+  font-size: 12.5px;
+  border: none;
+  background: transparent;
+  color: var(--md-fg-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.set-seg-item + .set-seg-item { border-left: 1px solid var(--md-border); }
+.set-seg-item:hover { background: var(--md-surface-2); color: var(--md-fg); }
+.set-seg-item.active {
+  background: var(--md-accent-soft);
+  color: var(--md-accent);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- 滑杆 */
+
+.set-range {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.set-range-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.set-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--md-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.set-range input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--md-accent);
+}
+
+/* ---------------------------------------------------------------- 信息行 */
+
+.set-info-value {
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--md-fg-muted);
+  max-width: 62%;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------------------------------------------------------------- 动作按钮 */
+
+.set-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--md-border);
+}
+
+.set-action {
+  padding: 6px 12px;
+  font-size: 12.5px;
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius);
+  background: var(--md-surface);
+  color: var(--md-fg);
+  cursor: pointer;
+}
+
+.set-action:hover { border-color: var(--md-accent); color: var(--md-accent); }
+
+.set-action.danger { color: var(--md-danger); border-color: var(--md-danger); }
+.set-action.danger:hover { background: var(--md-danger); color: #ffffff; }
+
+/* ---------------------------------------------------------------- 编辑器内弹层 */
+
+#settings-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(12, 15, 20, 0.45);
+}
+
+#settings-modal.open { display: flex; }
+
+.set-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(720px, 100%);
+  height: min(620px, 100%);
+  overflow: hidden;
+  background: var(--md-bg);
+  border: 1px solid var(--md-border-strong);
+  border-radius: 12px;
+  box-shadow: var(--md-shadow);
+}
+
+.set-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  padding: 11px 14px;
+  background: var(--md-surface);
+  border-bottom: 1px solid var(--md-border);
+}
+
+.set-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.set-close {
+  padding: 2px 7px;
+  font-size: 18px;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--md-fg-muted);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.set-close:hover { background: var(--md-surface-2); color: var(--md-fg); }
+
+#settings-modal .set-shell {
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: 148px minmax(0, 1fr);
+}
+
+@media (max-width: 620px) {
+  .set-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  .set-nav {
+    grid-column: 1;
+    grid-row: 1;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--md-border);
+  }
+  .set-body { grid-column: 1; grid-row: 2; padding: 14px; }
+  .set-foot { grid-row: 3; }
+}
+
+/* ---------------------------------------------------------------- 动效开关 */
+
+.md-reduce-motion *,
+.md-reduce-motion *::before,
+.md-reduce-motion *::after {
+  transition-duration: 0s !important;
+  animation-duration: 0s !important;
+}

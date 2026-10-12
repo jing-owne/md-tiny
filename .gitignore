@@ -1,0 +1,26 @@
+# 本地运行时产物（不应提交）
+config.json
+node-path.txt
+assoc-backup.json
+*.log
+.tmp-*/
+.tmp-chrome*/
+
+# 开发期自测脚本（仅本机运行，不入库；也不进发布包）
+tools/test-settings.js
+tools/test-richedit.js
+tools/richedit-cases.js
+win/test-server.js
+win/test-launcher.js
+win/test-e2e.js
+
+# 构建期生成（由 node tools/build.js 产出，随 dist/*.zip 一并分发）
+extension/BUILD.SIG
+win/BUILD.SIG
+
+# 通用
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
